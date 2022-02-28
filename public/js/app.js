@@ -150,7 +150,7 @@ const displayPhoneInfo = (phone) => {
                                     <div class="d-flex flex-wrap justify-content-lg-around justify-content-center w-100 p-3 my-4">
                                         <img src="${image}" alt="details image"
                                             class="img-fluid">
-                                        <div>
+                                        <div class="text-center mt-3">
                                             <p><b>Brand - </b> ${brand}</p>
                                             <div class="sensors">
                                                 <b>Sensors</b>
