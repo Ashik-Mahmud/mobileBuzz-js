@@ -88,8 +88,8 @@ const displayPhone = (terms, phones) => {
                                             </div>
                                             <div class="card-body mt-2">
                                                 <div class="d-flex align-items-center justify-content-between">
-                                                    <h5>${phone_name}</h5>
-                                                    <span class="brand">${brand}</span>
+                                                  <h5>${phone_name}</h5>   
+                                                <span class="brand text-primary-alt">${brand}</span>
                                                 </div>
                                                 <button onclick="loadPhoneInfo('${slug}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="mt-2 btn bg-primary-alt text-white" >More Info</button>
                                             </div>
@@ -134,7 +134,7 @@ const displayPhoneInfo = (phone) => {
         sensors
     } = mainFeatures;
     /*Nested TODO: for sensors  */
-    const sensorsText = sensors.map(sensor => ` <li class="my-1 text-capitalize"> ${sensor}</li>`).join('');
+    const sensorsText = sensors.map(sensor => ` <li class="my-1 text-capitalize">&#10003; ${sensor}</li>`).join('');
     /* Nested TODO: for others */
     let othersValues = Object.entries(others);
     let othersTag = '';
@@ -150,7 +150,7 @@ const displayPhoneInfo = (phone) => {
                                     <div class="d-flex flex-wrap justify-content-lg-around justify-content-center w-100 p-3 my-4">
                                         <img src="${image}" alt="details image"
                                             class="img-fluid">
-                                        <div class="text-center mt-3">
+                                        <div class="text-sm-left text-md-left text-lg-left mt-3">
                                             <p><b>Brand - </b> ${brand}</p>
                                             <div class="sensors">
                                                 <b>Sensors</b>
