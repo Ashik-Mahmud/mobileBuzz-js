@@ -25,7 +25,7 @@ const tinyMessage = document.getElementById("tiny-message");
  STEP: 2. load all mobile phone when users click on search button  
 */
 
-searchButton.addEventListener('click', async () => {
+const manageApi = async () => {
     let searchTerms = searchField.value.toLowerCase();
     if (searchTerms === '') {
         tinyMessage.style.display = 'block';
@@ -48,7 +48,10 @@ searchButton.addEventListener('click', async () => {
             phoneContainer.appendChild(div);
         }
     }
-})
+}
+
+searchButton.addEventListener('click', manageApi);
+searchField.addEventListener('keypress', (event)=> event.key === 'Enter' ? manageApi() : '');
 
 /*
 STEP: 2.5 show all phones by clicking load more button  
