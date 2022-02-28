@@ -31,9 +31,24 @@ searchButton.addEventListener('click', async () => {
         let response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchTerms}`);
         let data = await response.json();
         displayPhone(searchTerms, data.data.length > 20 ? data.data.slice(0, 20) : data.data)
-        tinyMessage.innerHTML = `<span >I got <b>${data.data.slice(0,20).length}</b> phones by name <b>${searchTerms}</b></span>`;
+        tinyMessage.innerHTML = `<span >I got <b>${data.data.length}</b> phones by name <b>${searchTerms}</b></span>`;
+
+        /* TODO: show all button features here */
+        if (data.data.length > 20) {
+            let div = document.createElement('div')
+            div.classList.add('text-center', 'my-5')
+            div.innerHTML = `<button onclick="showAllPhone('${searchTerms}')" class="btn bg-primary-alt text-white w-auto">Show All</button>`;
+            phoneContainer.appendChild(div);
+        }
     }
 })
+/* 2.5 show all phones by clicking load more button  */
+const showAllPhone = async (searchTerms) => {
+    let response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchTerms}`);
+    let data = await response.json();
+    displayPhone(searchTerms, data.data);
+
+}
 
 /* 3. display phone item at UI  */
 const displayPhone = (terms, phones) => {
