@@ -18,7 +18,7 @@ const messageText = document.getElementById("message-text");
 const preloader = document.getElementById("preloader");
 const tinyMessage = document.getElementById("tiny-message");
 /* 2. load all mobile phone when users click on search button  */
-searchButton.addEventListener('click', async (event) => {
+searchButton.addEventListener('click', async () => {
     let searchTerms = searchField.value.toLowerCase();
     if (searchTerms === '') {
         tinyMessage.style.display = 'block';
@@ -31,7 +31,7 @@ searchButton.addEventListener('click', async (event) => {
         let response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchTerms}`);
         let data = await response.json();
         displayPhone(searchTerms, data.data.length > 20 ? data.data.slice(0, 20) : data.data)
-        tinyMessage.innerHTML = `<span >I got <b>${data.data.slice(0,20).length}</b> phones by name <b>${searchTerms}</b></span>`
+        tinyMessage.innerHTML = `<span >I got <b>${data.data.slice(0,20).length}</b> phones by name <b>${searchTerms}</b></span>`;
     }
 })
 
@@ -90,25 +90,25 @@ const displayPhoneInfo = (phone) => {
         mainFeatures,
         others
     } = phone;
-
-
     // for main features 
-    let {storage, displaySize, memory, chipSet, sensors} = mainFeatures;
-    const sensorsText = sensors.map(sensor =>{
-        return ` <li class="my-1 text-capitalize"> ${sensor}</li>`;
-    }).join('');
-   
+    let {
+        storage,
+        displaySize,
+        memory,
+        chipSet,
+        sensors
+    } = mainFeatures;
+    // for sensors 
+    const sensorsText = sensors.map(sensor => ` <li class="my-1 text-capitalize"> ${sensor}</li>`).join('');
     // for others
     let othersValues = Object.entries(others);
     let othersTag = '';
-    for(let [key,value] of othersValues){
-        othersTag += `<span >${key} : <i class="text-primary-alt">${value}</i></span>`;
-    }
+    for (let [key, value] of othersValues) othersTag += `<span >${key} : <i class="text-primary-alt">${value}</i></span>`;
     modalContainer.innerHTML = `
                                 <div class="modal-header">
                                     <div class="d-flex flex-wrap w-100 align-items-center justify-content-between">
                                         <h5 class="modal-title" id="staticBackdropLabel">${name}</h5>
-                                        <span> ${releaseDate ? releaseDate : 'Not Available'}</span>
+                                        <span> ${releaseDate ? releaseDate : 'Not Available Release Date'}</span>
                                     </div>
                                </div>
                                 <div class="modal-body">
@@ -128,12 +128,10 @@ const displayPhoneInfo = (phone) => {
                                     <div class="main-features m-md-3">
                                         <h5>Specification - </h5>
                                         <ul class="list-group">
-                                            <li class="list-group-item d-flex flex-wrap align-items-center justify-content-between"><b>Storage:</b>${storage}</li>
-                                            <li class="list-group-item d-flex flex-wrap align-items-center justify-content-between">
-                                                <b>DisplaySize:</b>${displaySize}</li>
-                                            <li class="list-group-item d-flex flex-wrap align-items-center justify-content-between">
-                                                <b>ChipSet:</b> ${chipSet}</li>
-                                            <li class="list-group-item d-flex flex-wrap align-items-center justify-content-between"><b>Memory:</b> ${memory}</li>
+                                            <li class="list-group-item "><b>Storage:</b>${storage}</li>
+                                            <li class="list-group-item "><b>DisplaySize:</b>${displaySize}</li>
+                                            <li class="list-group-item "><b>ChipSet:</b> ${chipSet}</li>
+                                            <li class="list-group-item "><b>Memory:</b> ${memory}</li>
                                         </ul>
                                     </div>
                                     <div class="others m-md-3 mb-0">
