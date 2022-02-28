@@ -80,3 +80,10 @@ body {
     display: inline-block;
     margin: .2rem;
 }
+
+#preloader{
+    display: none;
+}
+#tiny-message{
+    display: none;
+}
