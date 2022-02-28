@@ -1,23 +1,30 @@
 /* 
 TODO:
-- 
--
--
--
--
--
+- select all important elements
+- load all mobile phone when users click on search button
+-- show all phones by clicking load more button 
+- display phone item at UI
+- load phone details on modal
+- display phone info at modal
 -
 
 */
 
-/* 1. select all important elements  */
+/*
+ STEP: 1. select all important elements  
+*/
+
 const searchField = document.getElementById("search-field");
 const searchButton = document.getElementById("search-btn");
 const phoneContainer = document.getElementById("phone-container");
 const messageText = document.getElementById("message-text");
 const preloader = document.getElementById("preloader");
 const tinyMessage = document.getElementById("tiny-message");
-/* 2. load all mobile phone when users click on search button  */
+
+/*
+ STEP: 2. load all mobile phone when users click on search button  
+*/
+
 searchButton.addEventListener('click', async () => {
     let searchTerms = searchField.value.toLowerCase();
     if (searchTerms === '') {
@@ -42,7 +49,11 @@ searchButton.addEventListener('click', async () => {
         }
     }
 })
-/* 2.5 show all phones by clicking load more button  */
+
+/*
+STEP: 2.5 show all phones by clicking load more button  
+*/
+
 const showAllPhone = async (searchTerms) => {
     let response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchTerms}`);
     let data = await response.json();
@@ -50,7 +61,10 @@ const showAllPhone = async (searchTerms) => {
 
 }
 
-/* 3. display phone item at UI  */
+/*
+STEP: 3. display phone item at UI  
+*/
+
 const displayPhone = (terms, phones) => {
     if (phones.length === 0) {
         preloader.style.display = 'none';
@@ -87,14 +101,20 @@ const displayPhone = (terms, phones) => {
 }
 
 
-/* 4. load phone details on modal  */
+/*
+STEP: 4. load phone details on modal  
+*/
+
 const loadPhoneInfo = async (slug) => {
     let response = await fetch(`https://openapi.programming-hero.com/api/phone/${slug}`);
     let data = await response.json();
     displayPhoneInfo(data.data)
 }
 
-/* 5. display phone info at modal  */
+/*
+STEP: 5. display phone info at modal  
+*/
+
 const displayPhoneInfo = (phone) => {
     const modalContainer = document.getElementById('modal-content');
     let {
@@ -105,7 +125,7 @@ const displayPhoneInfo = (phone) => {
         mainFeatures,
         others
     } = phone;
-    // for main features 
+    /*Nested TODO: for main features  */
     let {
         storage,
         displaySize,
@@ -113,9 +133,9 @@ const displayPhoneInfo = (phone) => {
         chipSet,
         sensors
     } = mainFeatures;
-    // for sensors 
+    /*Nested TODO: for sensors  */
     const sensorsText = sensors.map(sensor => ` <li class="my-1 text-capitalize"> ${sensor}</li>`).join('');
-    // for others
+    /* Nested TODO: for others */
     let othersValues = Object.entries(others);
     let othersTag = '';
     for (let [key, value] of othersValues) othersTag += `<span >${key} : <i class="text-primary-alt">${value}</i></span>`;
@@ -158,4 +178,4 @@ const displayPhoneInfo = (phone) => {
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="button" class="btn bg-primary-alt text-white">Checkout for Buy</button>
                                 </div>`;
-}
+};
