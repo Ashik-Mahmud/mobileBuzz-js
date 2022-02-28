@@ -1,0 +1,22 @@
+/* ========== project custom stylesheets =============== */
+
+/*========== google fonts [Poppins] =======*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/* ==== variables ===== */
+:root{
+    --poppins: 'Poppins', sans-serif;
+}
+
+body{
+    font-family: var(--poppins);
+    font-size: 16px;
+}
+
+/*======= custom classes ===== */
+.cursor-pointer{
+    cursor: pointer;
+}
+.font-poppins{
+    font-family: var(--poppins);
+}
