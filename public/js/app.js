@@ -119,7 +119,6 @@ STEP: 5. display phone info at modal
 */
 
 const displayPhoneInfo = (phone) => {
-    console.log(phone)
     const modalContainer = document.getElementById('modal-content');
     let {
         brand,
