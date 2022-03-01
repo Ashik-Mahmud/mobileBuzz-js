@@ -119,6 +119,7 @@ STEP: 5. display phone info at modal
 */
 
 const displayPhoneInfo = (phone) => {
+    console.log(phone)
     const modalContainer = document.getElementById('modal-content');
     let {
         brand,
@@ -139,7 +140,7 @@ const displayPhoneInfo = (phone) => {
     /*Nested TODO: for sensors  */
     const sensorsText = sensors.map(sensor => ` <li class="my-1 text-capitalize">&#10003; ${sensor}</li>`).join('');
     /* Nested TODO: for others */
-    let othersValues = Object.entries(others);
+    let othersValues = Object.entries(others ? others : '');
     let othersTag = '';
     for (let [key, value] of othersValues) othersTag += `<span >${key} : <i class="text-primary-alt">${value}</i></span>`;
     modalContainer.innerHTML = `
